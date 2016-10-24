@@ -38,6 +38,7 @@ public class FibonacciRecursiveActivity extends AppCompatActivity {
 
     /**
      * Calculates and screen-prints the desired Fibonacci number
+     *
      * @param position The position of the desired number in the Fibonacci row
      */
     private void CalculateSpecificFibonacciNumber(int position) {
@@ -47,13 +48,25 @@ public class FibonacciRecursiveActivity extends AppCompatActivity {
 
     /**
      * Recursive Fibonacci calculation
-     * @param n Currently selected position number
+     *
+     * @param n Currently selected position number, not negative.
      * @return The Fibonacci number of position n
      */
     private int Fibonacci(int n) {
 
         /* TODO: IMPLEMENT THIS */
+        // Not negative
+        if (BuildConfig.DEBUG && (n < 0)) throw new AssertionError();
 
-        return 0; // TODO: remove this statement
+        switch (n) {
+            case 0:
+                return 0;
+            case 1:
+                return 1;
+            default:
+                return Fibonacci(n - 1) + Fibonacci(n - 2);
+
+        }
+
     }
 }

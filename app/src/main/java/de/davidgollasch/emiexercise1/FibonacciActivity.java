@@ -63,8 +63,10 @@ public class FibonacciActivity extends AppCompatActivity {
         a = 0;
         b = 1;
         for (int i = 1; i <= (max_n + 1) / 2; i++) {
-            output += Integer.toString(a) + " ";
-            output += Integer.toString(b) + " ";
+           /* output += "F_" + Integer.toString(i * 2 - 2) + ": " + Integer.toString(a) + "\n";
+            output += "F_" + Integer.toString(i * 2 - 1) + ": " + Integer.toString(b) + "\n";*/
+            output += Integer.toString(a) + "  ";
+            output += Integer.toString(b) + "  ";
             a = a + b;
             b = a + b;
         }
