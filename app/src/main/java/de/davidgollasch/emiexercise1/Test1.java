@@ -79,6 +79,8 @@ final class Test1 {
         int a, b;
         a = 0;
         b = 1;
+
+
         for (int i = 1; i <= (max_n + 1) / 2; i++) {
             output += Integer.toString(a) + " ";
             output += Integer.toString(b) + " ";
@@ -89,3 +91,4 @@ final class Test1 {
         return output;
     }
 }
+
