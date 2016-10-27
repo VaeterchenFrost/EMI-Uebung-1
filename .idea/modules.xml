@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/KappaClaus.iml" filepath="$PROJECT_DIR$/KappaClaus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EMI-Uebung-1.iml" filepath="$PROJECT_DIR$/EMI-Uebung-1.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
