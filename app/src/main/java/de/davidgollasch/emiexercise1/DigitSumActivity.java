@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.view.inputmethod.EditorInfo;
+import android.view.KeyEvent;
 
 import static de.davidgollasch.emiexercise1.R.id.button_digitsum;
 import static de.davidgollasch.emiexercise1.R.id.in_digitsum;
@@ -54,6 +56,29 @@ public class DigitSumActivity extends AppCompatActivity {
 
                 // Invoke calculation
                 CalculateDigitSum();
+            }
+        });
+
+        etNumber.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int actionId, KeyEvent event) {
+                tvOutput.setText("lol");
+                if (event == null) {
+                    if (actionId == EditorInfo.IME_ACTION_DONE) ;
+                        // Capture soft enters in a singleLine EditText that is the last EditText.
+                    else if (actionId == EditorInfo.IME_ACTION_NEXT) ;
+                        // Capture soft enters in other singleLine EditTexts
+                    else return false;  // Let system handle all other null KeyEvents
+                } else if (actionId == EditorInfo.IME_NULL) {
+                    // Capture most soft enters in multi-line EditTexts and all hard enters.
+                    // They supply a zero actionId and a valid KeyEvent rather than
+                    // a non-zero actionId and a null event like the previous cases.
+                    if (event.getAction() == KeyEvent.ACTION_DOWN) ;
+                        // We capture the event when key is first pressed.
+                    else return true;   // We consume the event when the key is released.
+                } else return false;
+                btnFire.performClick();
+                return true;
             }
         });
     }
