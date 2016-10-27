@@ -1,12 +1,15 @@
 package de.davidgollasch.emiexercise1;
 
 import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import static de.davidgollasch.emiexercise1.R.id.button_digitsum;
+import static de.davidgollasch.emiexercise1.R.id.in_digitsum;
+import static de.davidgollasch.emiexercise1.R.id.textViewdigitsum;
 
 public class DigitSumActivity extends AppCompatActivity {
 
@@ -37,6 +40,9 @@ public class DigitSumActivity extends AppCompatActivity {
          *
          *
          */
+        tvOutput = (TextView) findViewById(textViewdigitsum);
+        etNumber = (EditText) findViewById(in_digitsum);
+        btnFire = (Button) findViewById(button_digitsum);
 
     }
 
