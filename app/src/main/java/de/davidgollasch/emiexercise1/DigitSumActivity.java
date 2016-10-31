@@ -2,13 +2,11 @@ package de.davidgollasch.emiexercise1;
 
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.annotation.IntegerRes;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.view.inputmethod.EditorInfo;
 import android.view.KeyEvent;
 
 import static de.davidgollasch.emiexercise1.R.id.button_digitsum;
@@ -62,23 +60,11 @@ public class DigitSumActivity extends AppCompatActivity {
         etNumber.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int actionId, KeyEvent event) {
-                tvOutput.setText("lol");
-                if (event == null) {
-                    if (actionId == EditorInfo.IME_ACTION_DONE) ;
-                        // Capture soft enters in a singleLine EditText that is the last EditText.
-                    else if (actionId == EditorInfo.IME_ACTION_NEXT) ;
-                        // Capture soft enters in other singleLine EditTexts
-                    else return false;  // Let system handle all other null KeyEvents
-                } else if (actionId == EditorInfo.IME_NULL) {
-                    // Capture most soft enters in multi-line EditTexts and all hard enters.
-                    // They supply a zero actionId and a valid KeyEvent rather than
-                    // a non-zero actionId and a null event like the previous cases.
-                    if (event.getAction() == KeyEvent.ACTION_DOWN) ;
-                        // We capture the event when key is first pressed.
-                    else return true;   // We consume the event when the key is released.
-                } else return false;
-                btnFire.performClick();
-                return true;
+                if (actionId == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_UP) {
+                    btnFire.performClick();
+                    return true; //Consumed event
+                }
+                return false;
             }
         });
     }
@@ -105,6 +91,27 @@ public class DigitSumActivity extends AppCompatActivity {
          *    (Hint: This can be done recursively using an additional function/method
          *    private int getDigitSum(int n))
          */
+        int digitsum = getDigitSum(s_number);
+
+        /*
+         * c) Print result
+         */
+        tvOutput.setText(Integer.toString(digitsum));
+
+
+    }
+
+    /*
+     * return digit sum of a number n
+     */
+    private int getDigitSum(int n) {
+        return getDigitSum(Integer.toString(n));
+    }
+
+    /*
+     * return digit sum of a digit-string s_number
+     */
+    private int getDigitSum(String s_number) {
         int digitsum = 0;
         // Add value of 1 to 9, nothing else.
         for (int i = s_number.length() - 1; i >= 0; i--) {
@@ -141,13 +148,9 @@ public class DigitSumActivity extends AppCompatActivity {
                     break;
             }
         } //Calculated sum of digits
-
-        /*
-         * c) Print result
-         */
-        tvOutput.setText(Integer.toString(digitsum));
-
-
+        return digitsum;
     }
 
 }
+
+
