@@ -137,6 +137,9 @@ public class AudioPlaybackActivity extends AppCompatActivity {
     private void EasternEmotionToggled() {
 
         /* TODO: IMPLEMENT THIS */
+        boolean checked = sEasternEmotion.isChecked();
+        if (checked) PlaybackEasternEmotion();
+        else PauseEasternEmotion();             // would be ok w/o else
 
     }
 
@@ -146,6 +149,8 @@ public class AudioPlaybackActivity extends AppCompatActivity {
     private void PlaybackEasternEmotion() {
 
         /* TODO: IMPLEMENT THIS */
+        if (sReggaeFeeling.isChecked()) sReggaeFeeling.setChecked(false);
+        mpEasternEmotion.start();
 
     }
 
@@ -155,6 +160,7 @@ public class AudioPlaybackActivity extends AppCompatActivity {
     private void PauseEasternEmotion() {
 
         /* TODO: IMPLEMENT THIS*/
+        mpEasternEmotion.pause();
 
     }
 
@@ -164,6 +170,9 @@ public class AudioPlaybackActivity extends AppCompatActivity {
     private void ReggaeFeelingToggled() {
 
         /* TODO: IMPLEMENT THIS */
+        boolean checked = sReggaeFeeling.isChecked();
+        if (checked) PlaybackReggaeFeeling();
+        else PauseReggaeFeeling();             // would be ok w/o else
 
     }
 
@@ -173,6 +182,8 @@ public class AudioPlaybackActivity extends AppCompatActivity {
     private void PlaybackReggaeFeeling() {
 
         /* TODO: IMPLEMENT THIS */
+        if (sEasternEmotion.isChecked()) sEasternEmotion.setChecked(false);
+        mpReggaeFeeling.start();
 
     }
 
@@ -182,6 +193,7 @@ public class AudioPlaybackActivity extends AppCompatActivity {
     private void PauseReggaeFeeling() {
 
         /* TODO: IMPLEMENT THIS */
+        mpReggaeFeeling.pause();
 
     }
 
@@ -191,6 +203,8 @@ public class AudioPlaybackActivity extends AppCompatActivity {
     private void BassBoostClicked() {
 
         /* TODO: IMPLEMENT THIS */
+//        bassBoost.setStrength((short) 500);
+
 
     }
 
@@ -200,6 +214,7 @@ public class AudioPlaybackActivity extends AppCompatActivity {
     private void VirtualizerClicked() {
 
         /* TODO: IMPLEMENT THIS */
+//        virtualizer.setStrength((short) 500);
 
     }
 
