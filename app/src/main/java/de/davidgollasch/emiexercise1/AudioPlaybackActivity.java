@@ -144,41 +144,6 @@ public class AudioPlaybackActivity extends AppCompatActivity {
         tbtnVirtualizer.setChecked(true);
     }
 
-    /**
-     * Configures the fx-BassBoost setup based on a given session
-     *
-     * @param sessionID The session to apply BassBoost on
-     */
-    private void SetupBassBoost(int sessionID) {
-        // Disable all prior FX
-        if (bassBoost != null) {
-            bassBoost.setEnabled(false);
-        }
-        // BASS BOOST
-        bassBoost = new BassBoost(0, sessionID);
-        if (bassBoost.getStrengthSupported()) {
-            bassBoost.setStrength((short) 1000);
-        }
-        bassBoost.setEnabled(true);
-        tbtnBassBoost.setChecked(true);
-    }
-
-    /**
-     * Configures the fx-Virtualizer setup based on a given session
-     *
-     * @param sessionID The session to apply BassBoost on
-     */
-    private void SetupVirtualizer(int sessionID) {
-        // Disable all prior FX
-        if (virtualizer != null) {
-            virtualizer.setEnabled(false);
-        }
-        // VIRTUALIZER
-        virtualizer = new Virtualizer(0, sessionID);
-        virtualizer.setStrength((short) 1000);
-        virtualizer.setEnabled(true);
-        tbtnVirtualizer.setChecked(true);
-    }
 
     /**
      * Handle toggling of Eastern Emotion switch
@@ -199,6 +164,10 @@ public class AudioPlaybackActivity extends AppCompatActivity {
 
         /* TODO: IMPLEMENT THIS */
         if (sReggaeFeeling.isChecked()) sReggaeFeeling.setChecked(false);
+        ConfigureSoundEffects(mpEasternEmotion.getAudioSessionId());
+        //Now both are active at first - disable if not set:
+        if (!tbtnBassBoost.isChecked()) bassBoost.setEnabled(false);
+        if (!tbtnVirtualizer.isChecked()) virtualizer.setEnabled(false);
         mpEasternEmotion.start();
 
     }
@@ -232,6 +201,10 @@ public class AudioPlaybackActivity extends AppCompatActivity {
 
         /* TODO: IMPLEMENT THIS */
         if (sEasternEmotion.isChecked()) sEasternEmotion.setChecked(false);
+        ConfigureSoundEffects(mpReggaeFeeling.getAudioSessionId());
+        //Now both are active at first - disable if not set:
+        if (!tbtnBassBoost.isChecked()) bassBoost.setEnabled(false);
+        if (!tbtnVirtualizer.isChecked()) virtualizer.setEnabled(false);
         mpReggaeFeeling.start();
 
     }
@@ -257,11 +230,11 @@ public class AudioPlaybackActivity extends AppCompatActivity {
 
         if (activate) { //Aktivieren Anweisung
             if (playingEE) {
-                SetupBassBoost(mpEasternEmotion.getAudioSessionId());
+
                 return;
             }
             if (playingRF) {
-                SetupBassBoost(mpReggaeFeeling.getAudioSessionId());
+
                 return;
             }
             return; //Keiner der beiden aktiv.
@@ -286,11 +259,11 @@ public class AudioPlaybackActivity extends AppCompatActivity {
 
         if (activate) { //Aktivieren Anweisung
             if (playingEE) {
-                SetupVirtualizer(mpEasternEmotion.getAudioSessionId());
+
                 return;
             }
             if (playingRF) {
-                SetupVirtualizer(mpReggaeFeeling.getAudioSessionId());
+
                 return;
             }
             return; //Keiner der beiden aktiv.
