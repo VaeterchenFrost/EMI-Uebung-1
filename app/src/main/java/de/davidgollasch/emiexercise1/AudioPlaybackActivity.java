@@ -9,11 +9,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import java.io.IOException;
 
 public class AudioPlaybackActivity extends AppCompatActivity {
+
+    private TextView textfield;
 
     /**
      * Switches (play/pause music)
@@ -36,6 +39,13 @@ public class AudioPlaybackActivity extends AppCompatActivity {
     private BassBoost bassBoost;
     private Virtualizer virtualizer;
 
+    /**
+     * BassBoost and Virtualiser active monitoring
+     */
+    private boolean bassbEasternEmotion = false, bassbReggaeFeeling = false;
+    private boolean virtEasternEmotion = false, virtReggaeFeeling = false;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +62,7 @@ public class AudioPlaybackActivity extends AppCompatActivity {
     private void InitializeActivity() {
         sEasternEmotion = (Switch) findViewById(R.id.switchEasternEmotion);
         sReggaeFeeling = (Switch) findViewById(R.id.switchReggaeFeeling);
+        textfield = (TextView) findViewById(R.id.textView16);
 
         sEasternEmotion.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -69,6 +80,7 @@ public class AudioPlaybackActivity extends AppCompatActivity {
 
         mpEasternEmotion = MediaPlayer.create(this, R.raw.eastern_emotion_terrasound_de);
         mpReggaeFeeling = MediaPlayer.create(this, R.raw.reggae_feeling_terrasound_de);
+
 
         mpEasternEmotion.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
@@ -101,6 +113,7 @@ public class AudioPlaybackActivity extends AppCompatActivity {
             }
         });
 
+
     }
 
     /**
@@ -124,6 +137,42 @@ public class AudioPlaybackActivity extends AppCompatActivity {
         bassBoost.setEnabled(true);
         tbtnBassBoost.setChecked(true);
 
+        // VIRTUALIZER
+        virtualizer = new Virtualizer(0, sessionID);
+        virtualizer.setStrength((short) 1000);
+        virtualizer.setEnabled(true);
+        tbtnVirtualizer.setChecked(true);
+    }
+
+    /**
+     * Configures the fx-BassBoost setup based on a given session
+     *
+     * @param sessionID The session to apply BassBoost on
+     */
+    private void SetupBassBoost(int sessionID) {
+        // Disable all prior FX
+        if (bassBoost != null) {
+            bassBoost.setEnabled(false);
+        }
+        // BASS BOOST
+        bassBoost = new BassBoost(0, sessionID);
+        if (bassBoost.getStrengthSupported()) {
+            bassBoost.setStrength((short) 1000);
+        }
+        bassBoost.setEnabled(true);
+        tbtnBassBoost.setChecked(true);
+    }
+
+    /**
+     * Configures the fx-Virtualizer setup based on a given session
+     *
+     * @param sessionID The session to apply BassBoost on
+     */
+    private void SetupVirtualizer(int sessionID) {
+        // Disable all prior FX
+        if (virtualizer != null) {
+            virtualizer.setEnabled(false);
+        }
         // VIRTUALIZER
         virtualizer = new Virtualizer(0, sessionID);
         virtualizer.setStrength((short) 1000);
@@ -201,11 +250,28 @@ public class AudioPlaybackActivity extends AppCompatActivity {
      * Handle Bass Boost Switch
      */
     private void BassBoostClicked() {
-
         /* TODO: IMPLEMENT THIS */
-//        bassBoost.setStrength((short) 500);
+        boolean playingEE = sEasternEmotion.isChecked();
+        boolean playingRF = sReggaeFeeling.isChecked();
+        boolean activate = tbtnBassBoost.isChecked();
 
+        if (activate) { //Aktivieren Anweisung
+            if (playingEE) {
+                SetupBassBoost(mpEasternEmotion.getAudioSessionId());
+                return;
+            }
+            if (playingRF) {
+                SetupBassBoost(mpReggaeFeeling.getAudioSessionId());
+                return;
+            }
+            return; //Keiner der beiden aktiv.
+        }
 
+        //Nicht aktiv ab hier
+
+        if (bassBoost != null) {
+            bassBoost.setEnabled(false);
+        }
     }
 
     /**
@@ -214,7 +280,27 @@ public class AudioPlaybackActivity extends AppCompatActivity {
     private void VirtualizerClicked() {
 
         /* TODO: IMPLEMENT THIS */
-//        virtualizer.setStrength((short) 500);
+        boolean playingEE = sEasternEmotion.isChecked();
+        boolean playingRF = sReggaeFeeling.isChecked();
+        boolean activate = tbtnVirtualizer.isChecked();
+
+        if (activate) { //Aktivieren Anweisung
+            if (playingEE) {
+                SetupVirtualizer(mpEasternEmotion.getAudioSessionId());
+                return;
+            }
+            if (playingRF) {
+                SetupVirtualizer(mpReggaeFeeling.getAudioSessionId());
+                return;
+            }
+            return; //Keiner der beiden aktiv.
+        }
+
+        //Nicht aktiv ab hier
+
+        if (virtualizer != null) {
+            virtualizer.setEnabled(false);
+        }
 
     }
 
