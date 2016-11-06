@@ -106,13 +106,13 @@
         android:layout_width="match_parent"
         android:textAppearance="@android:style/TextAppearance.Holo.Large"
         android:textAlignment="center"
-        android:textColor="@color/tuAkzentfarbe2GruenHell"
+        android:textColor="@color/tuAkzentfarbe1BlauHell"
         android:textStyle="normal|bold"
         android:textSize="30sp"
         android:layout_alignBaseline="@+id/textView21"
         android:layout_alignBottom="@+id/textView21"
         android:layout_toRightOf="@+id/textView21"
-        android:layout_alignRight="@+id/in_digitsum"
-        android:layout_alignEnd="@+id/in_digitsum" />
+        android:layout_alignRight="@+id/button_digitsum"
+        android:layout_alignEnd="@+id/button_digitsum" />
 
 </RelativeLayout>
