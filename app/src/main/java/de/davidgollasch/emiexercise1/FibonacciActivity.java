@@ -57,10 +57,8 @@ public class FibonacciActivity extends AppCompatActivity {
         *
         /* TODO: IMPLEMENT THIS */
 
-        if (max_n < 0) {
-            tvOutput.setText(output);
-            return;
-        }
+        // Not negative
+        if (BuildConfig.DEBUG && (max_n < 0)) throw new AssertionError();
 
         int a, b;
         a = 0;
