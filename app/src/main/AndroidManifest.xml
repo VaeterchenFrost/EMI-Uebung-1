@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="de.davidgollasch.emiexercise1">
 
-    <uses-sdk android:minSdkVersion="21" />
-
     <application
 
         android:allowBackup="true"

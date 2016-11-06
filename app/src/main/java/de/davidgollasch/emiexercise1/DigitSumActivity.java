@@ -109,12 +109,17 @@ public class DigitSumActivity extends AppCompatActivity {
     }
 */
 
-    /*
-     * return digit sum of a digit-string s_number
-     */
+    /**
+     * Returns digit sum of a digit-string s_number.
+     * This is done by looking for characters 1-9
+     * and adding the value according.
+     *
+     * @param s_number a string to process
+     * @return the integer representing the digit sum of s_number.
+     **/
     private int getDigitSum(String s_number) {
         int digitsum = 0;
-        // Add value of 1 to 9, nothing else.
+        // Add value of chars: 1, 2, 3, 4, 5, 6, 7, 8, 9 ; nothing else.
         for (int i = s_number.length() - 1; i >= 0; i--) {
             //Look for matching literal(s):
             switch (s_number.charAt(i)) {
