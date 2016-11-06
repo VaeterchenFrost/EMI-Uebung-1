@@ -69,8 +69,10 @@ public class AudioPlaybackActivity extends AppCompatActivity {
             }
         });
 
-        mpEasternEmotion = MediaPlayer.create(this, R.raw.eastern_emotion_terrasound_de);
-        mpReggaeFeeling = MediaPlayer.create(this, R.raw.reggae_feeling_terrasound_de);
+        mpEasternEmotion = MediaPlayer.create(this, R.raw.sin);
+//        mpEasternEmotion = MediaPlayer.create(this, R.raw.eastern_emotion_terrasound_de);
+        mpReggaeFeeling = MediaPlayer.create(this, R.raw.bass_and_surround_sound);
+//        mpReggaeFeeling = MediaPlayer.create(this, R.raw.reggae_feeling_terrasound_de);
 
         mpEasternEmotion.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
