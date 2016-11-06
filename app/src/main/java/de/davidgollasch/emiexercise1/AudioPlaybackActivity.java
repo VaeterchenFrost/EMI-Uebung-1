@@ -81,7 +81,6 @@ public class AudioPlaybackActivity extends AppCompatActivity {
         mpEasternEmotion = MediaPlayer.create(this, R.raw.eastern_emotion_terrasound_de);
         mpReggaeFeeling = MediaPlayer.create(this, R.raw.reggae_feeling_terrasound_de);
 
-
         mpEasternEmotion.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
@@ -118,20 +117,21 @@ public class AudioPlaybackActivity extends AppCompatActivity {
 
     /**
      * Configures the sound FX setup based on a given session
+     *
      * @param sessionID The session to apply FX on
      */
     private void ConfigureSoundEffects(int sessionID) {
         // Disable all prior FX
-        if(bassBoost != null) {
+        if (bassBoost != null) {
             bassBoost.setEnabled(false);
         }
-        if(virtualizer != null) {
+        if (virtualizer != null) {
             virtualizer.setEnabled(false);
         }
 
         // BASS BOOST
         bassBoost = new BassBoost(0, sessionID);
-        if(bassBoost.getStrengthSupported()) {
+        if (bassBoost.getStrengthSupported()) {
             bassBoost.setStrength((short) 1000);
         }
         bassBoost.setEnabled(true);
@@ -153,7 +153,7 @@ public class AudioPlaybackActivity extends AppCompatActivity {
         /* TODO: IMPLEMENT THIS */
         boolean checked = sEasternEmotion.isChecked();
         if (checked) PlaybackEasternEmotion();
-        else PauseEasternEmotion();             // would be ok w/o else
+        else PauseEasternEmotion();
 
     }
 
@@ -230,11 +230,19 @@ public class AudioPlaybackActivity extends AppCompatActivity {
 
         if (activate) { //Aktivieren Anweisung
             if (playingEE) {
-
+                if (bassBoost != null) {
+                    mpEasternEmotion.pause();
+                    bassBoost.setEnabled(true);
+                    mpEasternEmotion.start();
+                }
                 return;
             }
             if (playingRF) {
-
+                if (bassBoost != null) {
+                    mpReggaeFeeling.pause();
+                    bassBoost.setEnabled(true);
+                    mpReggaeFeeling.start();
+                }
                 return;
             }
             return; //Keiner der beiden aktiv.
@@ -259,11 +267,19 @@ public class AudioPlaybackActivity extends AppCompatActivity {
 
         if (activate) { //Aktivieren Anweisung
             if (playingEE) {
-
+                if (virtualizer != null) {
+                    mpEasternEmotion.pause();
+                    virtualizer.setEnabled(true);
+                    mpEasternEmotion.start();
+                }
                 return;
             }
             if (playingRF) {
-
+                if (virtualizer != null) {
+                    mpReggaeFeeling.pause();
+                    virtualizer.setEnabled(true);
+                    mpReggaeFeeling.start();
+                }
                 return;
             }
             return; //Keiner der beiden aktiv.

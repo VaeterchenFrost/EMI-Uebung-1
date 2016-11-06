@@ -57,7 +57,10 @@ public class FibonacciActivity extends AppCompatActivity {
         *
         /* TODO: IMPLEMENT THIS */
 
-        if (max_n < 0) return;
+        if (max_n < 0) {
+            tvOutput.setText(output);
+            return;
+        }
 
         int a, b;
         a = 0;

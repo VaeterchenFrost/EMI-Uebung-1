@@ -39,8 +39,6 @@ public class DigitSumActivity extends AppCompatActivity {
          *
          *  TODO: IMPLEMENT THIS
          *  NUMBER 2: LINK VIEWS
-         *
-         *
          */
         tvOutput = (TextView) findViewById(textViewdigitsum);
         etNumber = (EditText) findViewById(in_digitsum);
@@ -57,6 +55,10 @@ public class DigitSumActivity extends AppCompatActivity {
             }
         });
 
+        /*
+         * Special buttons used in EditText:
+         * -> ENTER, confirm input String
+         */
         etNumber.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int actionId, KeyEvent event) {
@@ -77,8 +79,6 @@ public class DigitSumActivity extends AppCompatActivity {
          *
          *  TODO: IMPLEMENT THIS
          *  NUMBER 3: CALCULATE AND PRINT DIGIT SUM
-         *
-         *
          */
 
         /*
@@ -98,15 +98,16 @@ public class DigitSumActivity extends AppCompatActivity {
          */
         tvOutput.setText(Integer.toString(digitsum));
 
-
     }
 
     /*
      * return digit sum of a number n
      */
+/*
     private int getDigitSum(int n) {
         return getDigitSum(Integer.toString(n));
     }
+*/
 
     /*
      * return digit sum of a digit-string s_number
