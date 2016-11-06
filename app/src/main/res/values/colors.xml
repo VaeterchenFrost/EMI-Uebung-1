@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="tuHausfarbeBlauDunkel">#0B2A51</color>
-    <color name="tuAkzentfarbe1BlauHell">#0059A3</color>
+    <color name="tuAkzentfarbe1BlauHell">#0059a3</color>
     <color name="tuAkzentfarbe2GruenHell">#348c40</color>
     <color name="tuAkzentfarbe3Orange">#E87B14</color>
 </resources>
