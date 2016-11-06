@@ -163,11 +163,22 @@ public class AudioPlaybackActivity extends AppCompatActivity {
     private void PlaybackEasternEmotion() {
 
         /* TODO: IMPLEMENT THIS */
+        // Safe previous sound effect setting
+        boolean tbbass_previous = tbtnBassBoost.isChecked();
+        boolean tbvirt_previous = tbtnVirtualizer.isChecked();
+        // Pause other tracks
         if (sReggaeFeeling.isChecked()) sReggaeFeeling.setChecked(false);
+        // Setup sound-effects
         ConfigureSoundEffects(mpEasternEmotion.getAudioSessionId());
-        //Now both are active at first - disable if not set:
-        if (!tbtnBassBoost.isChecked()) bassBoost.setEnabled(false);
-        if (!tbtnVirtualizer.isChecked()) virtualizer.setEnabled(false);
+        //Now both are active at first - disable if not prev. set:
+        if (!tbbass_previous) {
+            bassBoost.setEnabled(false);
+            tbtnBassBoost.setChecked(false);
+        }
+        if (!tbvirt_previous) {
+            virtualizer.setEnabled(false);
+            tbtnVirtualizer.setChecked(false);
+        }
         mpEasternEmotion.start();
 
     }
@@ -190,7 +201,7 @@ public class AudioPlaybackActivity extends AppCompatActivity {
         /* TODO: IMPLEMENT THIS */
         boolean checked = sReggaeFeeling.isChecked();
         if (checked) PlaybackReggaeFeeling();
-        else PauseReggaeFeeling();             // would be ok w/o else
+        else PauseReggaeFeeling();
 
     }
 
@@ -200,11 +211,22 @@ public class AudioPlaybackActivity extends AppCompatActivity {
     private void PlaybackReggaeFeeling() {
 
         /* TODO: IMPLEMENT THIS */
+        // Safe previous sound effect setting
+        boolean tbbass_previous = tbtnBassBoost.isChecked();
+        boolean tbvirt_previous = tbtnVirtualizer.isChecked();
+        // Pause other tracks
         if (sEasternEmotion.isChecked()) sEasternEmotion.setChecked(false);
+        // Setup sound-effects
         ConfigureSoundEffects(mpReggaeFeeling.getAudioSessionId());
-        //Now both are active at first - disable if not set:
-        if (!tbtnBassBoost.isChecked()) bassBoost.setEnabled(false);
-        if (!tbtnVirtualizer.isChecked()) virtualizer.setEnabled(false);
+        //Now both are active at first - disable if not prev. set:
+        if (!tbbass_previous) {
+            bassBoost.setEnabled(false);
+            tbtnBassBoost.setChecked(false);
+        }
+        if (!tbvirt_previous) {
+            virtualizer.setEnabled(false);
+            tbtnVirtualizer.setChecked(false);
+        }
         mpReggaeFeeling.start();
 
     }
