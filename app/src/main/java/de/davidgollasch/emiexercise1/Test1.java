@@ -9,86 +9,94 @@ import static java.lang.System.*;
  */
 
 final class Test1 {
-    public static void main(String[] args) {
-        int a, b;
-        a = 27;
-        b = 2;
-        out.println(a / b);
-//        String s = CalculateFibonacciRow();
-//        out.println(s);
-        for (char k : "alpha".toCharArray()
-                ) {
-            out.print(k + "0");
-        }
-        String s_zahl = "12345";
-//        int zahl = Integer.parseInt(s_zahl);
-        int quersumme = 0;
-        // Add value of 1 to 9, nothing else.
-        for (int i = s_zahl.length() - 1; i >= 0; i--) {
-            switch (s_zahl.charAt(i)) {
-                case '1':
-                    quersumme += 1;
-                    break;
-                case '2':
-                    quersumme += 2;
-                    break;
-                case '3':
-                    quersumme += 3;
-                    break;
-                case '4':
-                    quersumme += 4;
-                    break;
-                case '5':
-                    quersumme += 5;
-                    break;
-                case '6':
-                    quersumme += 6;
-                    break;
-                case '7':
-                    quersumme += 7;
-                    break;
-                case '8':
-                    quersumme += 8;
-                    break;
-                case '9':
-                    quersumme += 9;
-                    break;
-                default:
-                    break;
+    /*public void test1_0Strength() throws Exception {
+        boolean result = false;
+        String msg = "test1_0Strength()";
+        getBassBoost(0);
+        try {
+            if (mBassBoost.getStrengthSupported()) {
+                mBassBoost.setStrength((short)TEST_STRENGTH);
+                short strength = mBassBoost.getRoundedStrength();
+                // allow 10% difference between set strength and rounded strength
+                assertTrue(msg +": got incorrect strength",
+                        ((float)strength > (float)TEST_STRENGTH * 0.9f) &&
+                                ((float)strength < (float)TEST_STRENGTH * 1.1f));
+            } else {
+                short strength = mBassBoost.getRoundedStrength();
+                assertTrue(msg +": got incorrect strength", strength >= 0 && strength <= 1000);
             }
-
+            result = true;
+        } catch (IllegalArgumentException e) {
+            msg = msg.concat(": Bad parameter value");
+            loge(msg, "Bad parameter value");
+        } catch (UnsupportedOperationException e) {
+            msg = msg.concat(": get parameter() rejected");
+            loge(msg, "get parameter() rejected");
+        } catch (IllegalStateException e) {
+            msg = msg.concat("get parameter() called in wrong state");
+            loge(msg, "get parameter() called in wrong state");
+        } finally {
+            releaseBassBoost();
         }
-        out.print(quersumme);
+        assertTrue(msg, result);
     }
 
-    private static String CalculateFibonacciRow() {
-        String output = "";
-        int max_n = 29;
-        /* further use unconnected to specific 'max_n'
-        * give every 2, starting with 0 like:
-        * F_0, F_1
-        * F_2, F_3
-        *
-        * times: ('max_n'+1)/2
-        * if not max_n%2 then append one more number. (first column)
-        *
-        /* TODO: IMPLEMENT THIS */
-
-        if (max_n < 0) return output;
-
-        int a, b;
-        a = 0;
-        b = 1;
-
-
-        for (int i = 1; i <= (max_n + 1) / 2; i++) {
-            output += Integer.toString(a) + " ";
-            output += Integer.toString(b) + " ";
-            a = a + b;
-            b = a + b;
+    //Test case 1.1: test properties
+    @LargeTest
+    public void test1_1Properties() throws Exception {
+        boolean result = false;
+        String msg = "test1_1Properties()";
+        getBassBoost(0);
+        try {
+            BassBoost.Settings settings = mBassBoost.getProperties();
+            String str = settings.toString();
+            settings = new BassBoost.Settings(str);
+            mBassBoost.setProperties(settings);
+            result = true;
+        } catch (IllegalArgumentException e) {
+            msg = msg.concat(": Bad parameter value");
+            loge(msg, "Bad parameter value");
+        } catch (UnsupportedOperationException e) {
+            msg = msg.concat(": get parameter() rejected");
+            loge(msg, "get parameter() rejected");
+        } catch (IllegalStateException e) {
+            msg = msg.concat("get parameter() called in wrong state");
+            loge(msg, "get parameter() called in wrong state");
+        } finally {
+            releaseBassBoost();
         }
-        if ((max_n % 2) == 0) output += Integer.toString(a) + " ";
-        return output;
+        assertTrue(msg, result);
     }
+
+    //-----------------------------------------------------------------
+    // private methods
+    //----------------------------------
+
+    private void getBassBoost(int session) {
+        if (mBassBoost == null || session != mSession) {
+            if (session != mSession && mBassBoost != null) {
+                mBassBoost.release();
+                mBassBoost = null;
+            }
+            try {
+                mBassBoost = new BassBoost(0, session);
+                mSession = session;
+            } catch (IllegalArgumentException e) {
+                Log.e(TAG, "getBassBoost() BassBoost not found exception: "+e);
+            } catch (UnsupportedOperationException e) {
+                Log.e(TAG, "getBassBoost() Effect library not loaded exception: "+e);
+            }
+        }
+        assertNotNull("could not create mBassBoost", mBassBoost);
+    }
+
+    private void releaseBassBoost() {
+        if (mBassBoost != null) {
+            mBassBoost.release();
+            mBassBoost = null;
+        }
+    }
+*/
 }
+
 
