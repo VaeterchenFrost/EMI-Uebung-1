@@ -42,20 +42,23 @@ public class FibonacciActivity extends AppCompatActivity {
     }
 
     /**
-     * This method has to be filled...
+     * Calculates Fibonacci numbers from F_0 up to F_30
+     * and gives the the resulting output-String to tvOutput.
+     *
      */
     private void CalculateFibonacciRow() {
         String output = "";
         int max_n = 30;
-        /* further use unconnected to specific 'max_n'
+
+        /* TODO: IMPLEMENT THIS
+        * further use unconnected to one specific 'max_n'
         * give every 2, starting with 0 like:
         * F_0, F_1
         * F_2, F_3
         *
         * times: ('max_n'+1)/2
         * if not max_n%2 then append one more number. (first column)
-        *
-        /* TODO: IMPLEMENT THIS */
+        **/
 
         // Not negative
         if (BuildConfig.DEBUG && (max_n < 0)) throw new AssertionError();
