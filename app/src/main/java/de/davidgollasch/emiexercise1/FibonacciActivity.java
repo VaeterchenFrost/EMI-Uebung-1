@@ -46,7 +46,7 @@ public class FibonacciActivity extends AppCompatActivity {
      */
     private void CalculateFibonacciRow() {
         String output = "";
-        int max_n = 29;
+        int max_n = 30;
         /* further use unconnected to specific 'max_n'
         * give every 2, starting with 0 like:
         * F_0, F_1
@@ -57,10 +57,8 @@ public class FibonacciActivity extends AppCompatActivity {
         *
         /* TODO: IMPLEMENT THIS */
 
-        if (max_n < 0) {
-            tvOutput.setText(output);
-            return;
-        }
+        // Not negative
+        if (BuildConfig.DEBUG && (max_n < 0)) throw new AssertionError();
 
         int a, b;
         a = 0;
